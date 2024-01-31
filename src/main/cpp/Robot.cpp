@@ -46,7 +46,10 @@ class Robot : public frc::TimedRobot {
     m_robotDrive.ArcadeDrive(-m_stick.GetY(), m_stick.GetTwist());
     // Code for shooter
     if (m_stick.GetRawButtonPressed(0)) {
-      
+      m_timer.Restart();
+      s_left.Set(0.01);
+      while (m_timer.Get() < 0.5_s) {}
+      s_left.StopMotor();
     }
     // Code for intake
 
