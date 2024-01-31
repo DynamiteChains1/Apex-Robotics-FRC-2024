@@ -2,6 +2,13 @@
 "C:\\Users\\Asher\\FRC CODONG\\Getting Started Drive Train\\build\\exe\\frcUserProgram\\debug\\frcUserProgram"
 "C:\\Users\\Asher\\FRC CODONG\\Getting Started Drive Train\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\3bg5a77l7vd4edmrxq5jco6ri\\Robot.o"
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\48a7247a2602435682f13a3a36995ca2\\transformed\\wpilibNewCommands-cpp-2024.1.1-linuxathenadebug\\linux\\athena\\shared\\libwpilibNewCommandsd.so
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\8f3bb91d0a2232c89171173fc23aef06\\transformed\\REVLib-cpp-2024.2.0-linuxathenastaticdebug\\linux\\athena\\static\\libREVLib.a
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\53c145fa25586f350d101b400f43fcc1\\transformed\\REVLib-driver-2024.2.0-linuxathenastaticdebug\\linux\\athena\\static\\libREVLibDriver.a
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\ec0ce2c7ca0c4b74052ec0c6a796d60d\\transformed\\wpiapi-cpp-5.33.0-linuxathenadebug\\linux\\athena\\shared\\libCTRE_Phoenix_WPI.so
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\9a8b569417f64926c032f206cd0293ed\\transformed\\api-cpp-5.33.0-linuxathenadebug\\linux\\athena\\shared\\libCTRE_Phoenix.so
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\514367a3de6934411d05784462330fbf\\transformed\\cci-5.33.0-linuxathenadebug\\linux\\athena\\shared\\libCTRE_PhoenixCCI.so
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\3e6757616f4aba05b7310ceb8d9d0487\\transformed\\wpiapi-cpp-24.1.0-linuxathenadebug\\linux\\athena\\shared\\libCTRE_Phoenix6_WPI.so
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\7f2c91b8641f21b3ed176eaef7f5836c\\transformed\\tools-24.1.0-linuxathenadebug\\linux\\athena\\shared\\libCTRE_PhoenixTools.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\7745a80f4fbcca355d652178d48182e1\\transformed\\wpilibc-cpp-2024.1.1-linuxathenadebug\\linux\\athena\\shared\\libwpilibcd.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\33566c24bccfd720435b1d0beb05cf81\\transformed\\ntcore-cpp-2024.1.1-linuxathenadebug\\linux\\athena\\shared\\libntcored.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\4654cc5b721db8ef67e791508d2c731c\\transformed\\hal-cpp-2024.1.1-linuxathenadebug\\linux\\athena\\shared\\libwpiHald.so

@@ -7,7 +7,7 @@
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
-#include <frc/motorcontrol/CANSparkMax.h>
+#include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
 #include <ctre/phoenix/motorcontrol/can/WPI_TalonFX.h>
 #include <ctre/phoenix6/Orchestra.hpp>
@@ -43,9 +43,11 @@ class Robot : public frc::TimedRobot {
 
   void TeleopPeriodic() override {
     // Drive with arcade style (use right stick to steer)
-    m_robotDrive.ArcadeDrive(-m_stick.GetY(), m_stick.GetX());
+    m_robotDrive.ArcadeDrive(-m_stick.GetY(), m_stick.GetTwist());
     // Code for shooter
-    
+    if (m_stick.GetRawButtonPressed(0)) {
+      
+    }
     // Code for intake
 
     // Code for climber
@@ -62,11 +64,11 @@ class Robot : public frc::TimedRobot {
   ctre::phoenix::motorcontrol::can::WPI_TalonFX m_right{2};
   frc::DifferentialDrive m_robotDrive{m_left, m_right};
   // Setup motors for intake
-  rev::CANSparkMax i_left{? rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax i_right{? rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax i_left{0, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax i_right{1, rev::CANSparkMax::MotorType::kBrushless};
   // Setup motors for shooter
-  rev::CANSparkMax s_left{? rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax s_right{? rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax s_left{2, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax s_right{3, rev::CANSparkMax::MotorType::kBrushless};
   // Setup motors for climber
   
 

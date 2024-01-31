@@ -2,6 +2,8 @@
 "C:\\Users\\Asher\\FRC CODONG\\Getting Started Drive Train\\build\\exe\\frcUserProgram\\release\\frcUserProgram"
 "C:\\Users\\Asher\\FRC CODONG\\Getting Started Drive Train\\build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\3bg5a77l7vd4edmrxq5jco6ri\\Robot.o"
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\22d38269d4683112b534b044bc985d5e\\transformed\\wpilibNewCommands-cpp-2024.1.1-linuxathena\\linux\\athena\\shared\\libwpilibNewCommands.so
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\f77b324e35072bcf78bb45cb17f984fc\\transformed\\REVLib-cpp-2024.2.0-linuxathenastatic\\linux\\athena\\static\\libREVLib.a
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\75e20742880f97cec85a7b158eb98c49\\transformed\\REVLib-driver-2024.2.0-linuxathenastatic\\linux\\athena\\static\\libREVLibDriver.a
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\1be5b91d3e543c3c067d3c0929edab97\\transformed\\wpiapi-cpp-5.33.0-linuxathena\\linux\\athena\\shared\\libCTRE_Phoenix_WPI.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\2da51118a96d03fe775fe7de691e6e3d\\transformed\\api-cpp-5.33.0-linuxathena\\linux\\athena\\shared\\libCTRE_Phoenix.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\5d386fafed2ffff70f3af0516e8aa2a7\\transformed\\cci-5.33.0-linuxathena\\linux\\athena\\shared\\libCTRE_PhoenixCCI.so

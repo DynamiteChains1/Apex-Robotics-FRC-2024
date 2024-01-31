@@ -18,6 +18,10 @@ c++
 -I
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\e75dd77605070101afba59d386d4f458\\transformed\\wpilibNewCommands-cpp-2024.1.1-headers
 -I
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\acf74c9c38fba6019abe8a833c25cc23\\transformed\\REVLib-cpp-2024.2.0-headers
+-I
+C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\08aab43b201660e18ec192694c9d72af\\transformed\\REVLib-driver-2024.2.0-headers
+-I
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\a74f137802d36693fa54c4ef0468d9a8\\transformed\\wpiapi-cpp-5.33.0-headers
 -I
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\fd08cae314f81ea4726856cd08adf77a\\transformed\\api-cpp-5.33.0-headers
