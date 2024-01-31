@@ -1,0 +1,8 @@
+See file:///C:/Users/Asher/FRC%20CODONG/Getting%20Started%20Drive%20Train/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
+compiling Robot.cpp failed.
+C:\Users\Asher\FRC CODONG\Getting Started Drive Train\src\main\cpp\Robot.cpp:11:10: fatal error: ctre/phoenix/WPI_TalonFX.h: No such file or directory
+   11 | #include <ctre/phoenix/WPI_TalonFX.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
+Finished compileFrcUserProgramDebugExecutableFrcUserProgramCpp, see full log file:///C:/Users/Asher/FRC%20CODONG/Getting%20Started%20Drive%20Train/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt.

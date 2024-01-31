@@ -1,0 +1,4 @@
+See file:///C:/Users/Asher/FRC%20CODONG/Getting%20Started%20Drive%20Train/build/tmp/linkFrcUserProgramDebugExecutable/output.txt for all output for linkFrcUserProgramDebugExecutable.
+linking frcUserProgram successful.
+
+Finished linkFrcUserProgramDebugExecutable, see full log file:///C:/Users/Asher/FRC%20CODONG/Getting%20Started%20Drive%20Train/build/tmp/linkFrcUserProgramDebugExecutable/output.txt.
