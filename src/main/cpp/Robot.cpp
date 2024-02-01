@@ -4,13 +4,12 @@
 
 #include <frc/TimedRobot.h>
 #include <frc/Timer.h>
-#include <frc/XboxController.h>
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
-#include <ctre/phoenix/motorcontrol/can/WPI_TalonFX.h>
 #include <ctre/phoenix6/Orchestra.hpp>
+#include <ctre/phoenix6/TalonFX.hpp>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -63,8 +62,8 @@ class Robot : public frc::TimedRobot {
 
  private:
   // Robot drive system
-  hardware::TalonFX m_left{1};
-  hardware::TalonFX m_right{2};
+  ctre::phoenix6::hardware::TalonFX m_left{1};
+  ctre::phoenix6::hardware::TalonFX m_right{2};
   frc::DifferentialDrive m_robotDrive{m_left, m_right};
   // Setup motors for intake
   rev::CANSparkMax i_left{0, rev::CANSparkMax::MotorType::kBrushless};
