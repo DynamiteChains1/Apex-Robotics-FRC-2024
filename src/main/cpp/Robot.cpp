@@ -63,8 +63,8 @@ class Robot : public frc::TimedRobot {
 
  private:
   // Robot drive system
-  ctre::phoenix::motorcontrol::can::WPI_TalonFX m_left{1};
-  ctre::phoenix::motorcontrol::can::WPI_TalonFX m_right{2};
+  hardware::TalonFX m_left{1};
+  hardware::TalonFX m_right{2};
   frc::DifferentialDrive m_robotDrive{m_left, m_right};
   // Setup motors for intake
   rev::CANSparkMax i_left{0, rev::CANSparkMax::MotorType::kBrushless};
