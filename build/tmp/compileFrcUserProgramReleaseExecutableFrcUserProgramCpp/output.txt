@@ -5,7 +5,7 @@ In file included from C:\Users\Asher\.gradle\caches\transforms-3\fd08cae314f81ea
                  from C:\Users\Asher\.gradle\caches\transforms-3\fd08cae314f81ea4726856cd08adf77a\transformed\api-cpp-5.33.0-headers/ctre/phoenix/motorcontrol/can/BaseTalon.h:8,
                  from C:\Users\Asher\.gradle\caches\transforms-3\fd08cae314f81ea4726856cd08adf77a\transformed\api-cpp-5.33.0-headers/ctre/phoenix/motorcontrol/can/TalonFX.h:8,
                  from C:\Users\Asher\.gradle\caches\transforms-3\fd08cae314f81ea4726856cd08adf77a\transformed\api-cpp-5.33.0-headers/ctre/Phoenix.h:22,
-                 from C:\Users\Asher\FRC CODONG\Getting Started Drive Train\src\main\cpp\Robot.cpp:11:
+                 from C:\Users\Asher\FRC CODONG\Getting Started Drive Train\src\main\cpp\Robot.cpp:10:
 C:\Users\Asher\.gradle\caches\transforms-3\eb9bd83d3b9767a658da6f8d1482b49b\transformed\cci-5.33.0-headers/ctre/phoenix/motorcontrol/FeedbackDevice.h:304:88: warning: 'TalonFXFeedbackDevice' is deprecated: This device's Phoenix 5 API is deprecated for removal in the 2025 season.Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API.A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html [-Wdeprecated-declarations]
   304 |                                 static std::string toString(TalonFXFeedbackDevice value) {
       |                                                                                        ^
@@ -630,17 +630,5 @@ C:\Users\Asher\.gradle\caches\transforms-3\a74f137802d36693fa54c4ef0468d9a8\tran
 C:\Users\Asher\.gradle\caches\transforms-3\eb9bd83d3b9767a658da6f8d1482b49b\transformed\cci-5.33.0-headers/ctre/phoenix/motorcontrol/InvertType.h:37:25: note: declared here
    37 |                         TalonFXInvertType {
       |                         ^~~~~~~~~~~~~~~~~
-C:\Users\Asher\FRC CODONG\Getting Started Drive Train\src\main\cpp\Robot.cpp:61:57: warning: 'WPI_TalonFX' is deprecated: This device's Phoenix 5 API is deprecated for removal in the 2025 season.Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API.A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html [-Wdeprecated-declarations]
-   61 |   ctre::phoenix::motorcontrol::can::WPI_TalonFX m_left{1};
-      |                                                         ^
-C:\Users\Asher\.gradle\caches\transforms-3\a74f137802d36693fa54c4ef0468d9a8\transformed\wpiapi-cpp-5.33.0-headers/ctre/phoenix/motorcontrol/can/WPI_TalonFX.h:46:1: note: declared here
-   46 | WPI_TalonFX : public virtual TalonFX,
-      | ^~~~~~~~~~~
-C:\Users\Asher\FRC CODONG\Getting Started Drive Train\src\main\cpp\Robot.cpp:62:58: warning: 'WPI_TalonFX' is deprecated: This device's Phoenix 5 API is deprecated for removal in the 2025 season.Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API.A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html [-Wdeprecated-declarations]
-   62 |   ctre::phoenix::motorcontrol::can::WPI_TalonFX m_right{2};
-      |                                                          ^
-C:\Users\Asher\.gradle\caches\transforms-3\a74f137802d36693fa54c4ef0468d9a8\transformed\wpiapi-cpp-5.33.0-headers/ctre/phoenix/motorcontrol/can/WPI_TalonFX.h:46:1: note: declared here
-   46 | WPI_TalonFX : public virtual TalonFX,
-      | ^~~~~~~~~~~
 
 Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/Asher/FRC%20CODONG/Getting%20Started%20Drive%20Train/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
