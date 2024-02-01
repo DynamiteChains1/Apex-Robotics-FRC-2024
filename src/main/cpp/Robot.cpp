@@ -44,12 +44,13 @@ class Robot : public frc::TimedRobot {
     // Drive with arcade style (use right stick to steer)
     m_robotDrive.ArcadeDrive(-m_stick.GetY(), m_stick.GetTwist());
     // Code for shooter
-    if (m_stick.GetRawButtonPressed(0)) {
-      m_timer.Restart();
-      s_left.Set(0.01);
-      while (m_timer.Get() < 0.5_s) {}
+    if (m_stick.GetRawButton(1)) {
+      s_left.Set(0.5);
+    }
+    else{
       s_left.StopMotor();
     }
+    
     // Code for intake
 
     // Code for climber
@@ -69,8 +70,8 @@ class Robot : public frc::TimedRobot {
   rev::CANSparkMax i_left{0, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax i_right{1, rev::CANSparkMax::MotorType::kBrushless};
   // Setup motors for shooter
-  rev::CANSparkMax s_left{2, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax s_right{3, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax s_left{7, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax s_right{8, rev::CANSparkMax::MotorType::kBrushless};
   // Setup motors for climber
   
 
