@@ -6,6 +6,7 @@
 #include <frc/Timer.h>
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <frc/Filesystem.h>
 #include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
 #include <ctre/phoenix6/Orchestra.hpp>
@@ -23,9 +24,22 @@ class Robot : public frc::TimedRobot {
     m_right.SetInverted(true);
     m_robotDrive.SetExpiration(100_ms);
     m_timer.Start();
+    s_follow.SetInverted(true);
+    s_follow.Follow(s_lead)
+    Orchestra m_orchestra;
+    m_orchestra.addInstrument(m_sus1);
+    m_orchestra.addInstrument(m_sus2);
+    std::string deploy_path = frc::filesystem::GetDeployDirectory();
+    m_orchestra.loadMusic(deploy_path + "/sus.chirp")
+    
   }
 
-  void AutonomousInit() override { m_timer.Restart(); }
+  void AutonomousInit() override { 
+    // Reset Timer for use with auton
+    m_timer.Restart(); 
+    // Sets the time for sus to false
+    bool sus_time = false; 
+    }
 
   void AutonomousPeriodic() override {
     // Drive for 2 seconds
@@ -36,9 +50,14 @@ class Robot : public frc::TimedRobot {
       // Stop robot
       m_robotDrive.ArcadeDrive(0.0, 0.0, false);
     }
+
+    if (m_timer.Get() > 0.5_s && !sus_time) {
+      m_orchestra.Play();
+      sus_time = true;
+    }
   }
 
-  void TeleopInit() override {}
+  void TeleopInit() override { m_orchestra.Play() }
 
   void TeleopPeriodic() override {
     // Drive with arcade style (use right stick to steer)
@@ -61,17 +80,21 @@ class Robot : public frc::TimedRobot {
 
   void TestPeriodic() override {}
 
+  void DisabledInit() override {}
+
  private:
   // Robot drive system
   ctre::phoenix6::hardware::TalonFX m_left{1};
   ctre::phoenix6::hardware::TalonFX m_right{2};
+  ctre::phoenix6::hardware::TalonFX m_sus1{3};
+  ctre::phoenix6::hardware::TalonFX m_sus2{4};
   frc::DifferentialDrive m_robotDrive{m_left, m_right};
   // Setup motors for intake
   rev::CANSparkMax i_left{0, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax i_right{1, rev::CANSparkMax::MotorType::kBrushless};
   // Setup motors for shooter
-  rev::CANSparkMax s_left{7, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax s_right{8, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax s_lead{7, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax s_follow{8, rev::CANSparkMax::MotorType::kBrushless};
   // Setup motors for climber
   
 
