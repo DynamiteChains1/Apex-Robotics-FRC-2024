@@ -45,13 +45,13 @@ class Robot : public frc::TimedRobot {
     // Drive for 2 seconds
     if (m_timer.Get() < 0.5_s) {
       // Drive forwards half speed, make sure to turn input squaring off
-      m_robotDrive.ArcadeDrive(0.05, 0.0, false);
+      m_robotDrive.ArcadeDrive(0.05, 0.0,m_orchestra.Play(); false);
     } else {
       // Stop robot
       m_robotDrive.ArcadeDrive(0.0, 0.0, false);
     }
 
-    if (m_timer.Get() > 0.5_s && !sus_time) {
+    if (m_timer.Get() > 0.5_s && sus_time == false) {
       m_orchestra.Play();
       sus_time = true;
     }
@@ -64,10 +64,10 @@ class Robot : public frc::TimedRobot {
     m_robotDrive.ArcadeDrive(-m_stick.GetY(), m_stick.GetTwist());
     // Code for shooter
     if (m_stick.GetRawButton(1)) {
-      s_left.Set(0.5);
+      s_lead.Set(0.5);
     }
     else{
-      s_left.StopMotor();
+      s_lead.StopMotor();
     }
     
     // Code for intake
