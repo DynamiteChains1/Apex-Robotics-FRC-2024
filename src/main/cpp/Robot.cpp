@@ -26,10 +26,8 @@ class Robot : public frc::TimedRobot {
     m_timer.Start();
     s_follow.SetInverted(true);
     s_follow.Follow(s_lead)
-    Orchestra m_orchestra;
     m_orchestra.addInstrument(m_sus1);
     m_orchestra.addInstrument(m_sus2);
-    string deploy_path = frc::filesystem::GetDeployDirectory();
     m_orchestra.loadMusic(deploy_path + "/sus.chirp");
     
   }
@@ -97,9 +95,15 @@ class Robot : public frc::TimedRobot {
   rev::CANSparkMax s_follow{8, rev::CANSparkMax::MotorType::kBrushless};
   // Setup motors for climber
   
-
+  // Setup Joystick and Timer
   frc::Joystick m_stick{0};
   frc::Timer m_timer;
+
+  // Gets deploy directory and sets it to a callable variable
+  string deploy_path = frc::filesystem::GetDeployDirectory();
+  
+  // Setup Orchestra
+  Orchestra m_orchestra;
 };
 
 #ifndef RUNNING_FRC_TESTS
