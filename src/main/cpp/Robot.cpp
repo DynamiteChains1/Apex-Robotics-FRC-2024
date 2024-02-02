@@ -30,7 +30,7 @@ class Robot : public frc::TimedRobot {
     m_orchestra.addInstrument(m_sus1);
     m_orchestra.addInstrument(m_sus2);
     std::string deploy_path = frc::filesystem::GetDeployDirectory();
-    m_orchestra.loadMusic(deploy_path + "/sus.chirp")
+    m_orchestra.loadMusic(deploy_path + "/sus.chirp");
     
   }
 
