@@ -8,7 +8,6 @@
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/Filesystem.h>
 #include <rev/CANSparkMax.h>
-#include <ctre/Phoenix.h>
 #include <ctre/phoenix6/Orchestra.hpp>
 #include <ctre/phoenix6/TalonFX.hpp>
 
@@ -25,10 +24,10 @@ class Robot : public frc::TimedRobot {
     m_robotDrive.SetExpiration(100_ms);
     m_timer.Start();
     s_follow.SetInverted(true);
-    s_follow.Follow(s_lead)
-    m_orchestra.addInstrument(m_sus1);
-    m_orchestra.addInstrument(m_sus2);
-    m_orchestra.loadMusic(deploy_path + "/sus.chirp");
+    s_follow.Follow(s_lead);
+    m_orchestra.AddInstrument(m_sus1);
+    m_orchestra.AddInstrument(m_sus2);
+    m_orchestra.LoadMusic("home/lvuser" "/sus.chirp");
     
   }
 
@@ -36,14 +35,14 @@ class Robot : public frc::TimedRobot {
     // Reset Timer for use with auton
     m_timer.Restart(); 
     // Sets the time for sus to false
-    bool sus_time = false; 
+    sus_time = false; 
     }
 
   void AutonomousPeriodic() override {
     // Drive for 2 seconds
     if (m_timer.Get() < 0.5_s) {
       // Drive forwards half speed, make sure to turn input squaring off
-      m_robotDrive.ArcadeDrive(0.05, 0.0,m_orchestra.Play(); false);
+      m_robotDrive.ArcadeDrive(0.05, 0.0, false);
     } else {
       // Stop robot
       m_robotDrive.ArcadeDrive(0.0, 0.0, false);
@@ -55,7 +54,7 @@ class Robot : public frc::TimedRobot {
     }
   }
 
-  void TeleopInit() override { m_orchestra.Play() }
+  void TeleopInit() override { m_orchestra.Play(); }
 
   void TeleopPeriodic() override {
     // Drive with arcade style (use right stick to steer)
@@ -100,10 +99,11 @@ class Robot : public frc::TimedRobot {
   frc::Timer m_timer;
 
   // Gets deploy directory and sets it to a callable variable
-  string deploy_path = frc::filesystem::GetDeployDirectory();
+  std::string deploy_path = frc::filesystem::GetDeployDirectory();
   
   // Setup Orchestra
-  Orchestra m_orchestra;
+  ctre::phoenix6::Orchestra m_orchestra;
+  bool sus_time = false;
 };
 
 #ifndef RUNNING_FRC_TESTS
