@@ -27,7 +27,8 @@ class Robot : public frc::TimedRobot {
     s_follow.Follow(s_lead);
     m_orchestra.AddInstrument(m_sus1);
     m_orchestra.AddInstrument(m_sus2);
-    m_orchestra.LoadMusic("home/lvuser" "/sus.chirp");
+    
+    m_orchestra.LoadMusic(deploy_path + "/sus.chirp");
     
   }
 
