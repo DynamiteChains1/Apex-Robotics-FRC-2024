@@ -11,6 +11,8 @@
 #include <ctre/phoenix6/Orchestra.hpp>
 #include <ctre/phoenix6/TalonFX.hpp>
 
+
+
 class Robot : public frc::TimedRobot {
  public:
   Robot() {
@@ -27,7 +29,7 @@ class Robot : public frc::TimedRobot {
     s_follow.Follow(s_lead);
     m_orchestra.AddInstrument(m_sus1);
     m_orchestra.AddInstrument(m_sus2);
-    
+    const char *dp = deploy_path
     m_orchestra.LoadMusic(deploy_path + "/sus.chirp");
     
   }
