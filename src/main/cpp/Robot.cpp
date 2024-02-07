@@ -30,7 +30,7 @@ class Robot : public frc::TimedRobot {
     m_orchestra.AddInstrument(m_sus1);
     m_orchestra.AddInstrument(m_sus2);
     const char *dp = deploy_path.c_str();
-    m_orchestra.LoadMusic(dp + "/sus.chirp");
+    m_orchestra.LoadMusic("sus.chirp");
     
   }
 
