@@ -29,7 +29,8 @@ class Robot : public frc::TimedRobot {
     s_follow.Follow(s_lead);
     m_orchestra.AddInstrument(m_sus1);
     m_orchestra.AddInstrument(m_sus2);
-    const char *dp = deploy_path.c_str();
+    //Old code that overcomplicates something that already happens
+    /*const char *dp = deploy_path.c_str(); */
     m_orchestra.LoadMusic("sus.chirp");
     
   }
@@ -101,8 +102,9 @@ class Robot : public frc::TimedRobot {
   frc::Joystick m_stick{0};
   frc::Timer m_timer;
 
-  // Gets deploy directory and sets it to a callable variable
-  std::string deploy_path = frc::filesystem::GetDeployDirectory();
+  // Gets deploy directory and sets it to a callable 
+  //This code is uneccessary and overcomplicates stuff that already happens
+  /*::string deploy_path = frc::filesystem::GetDeployDirectory();*/
   
   // Setup Orchestra
   ctre::phoenix6::Orchestra m_orchestra;
