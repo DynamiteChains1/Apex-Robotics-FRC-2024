@@ -27,15 +27,16 @@ class Robot : public frc::TimedRobot {
     m_timer.Start();
     s_follow.SetInverted(true);
     s_follow.Follow(s_lead);
-    m_orchestra.AddInstrument(m_sus1);
-    m_orchestra.AddInstrument(m_sus2);
     //Old code that overcomplicates something that already happens
     /*const char *dp = deploy_path.c_str(); */
-    m_orchestra.LoadMusic("sus.chirp");
+    m_orchestra.LoadMusic("sus.chrp");
+    m_orchestra.AddInstrument(m_sus1);
+    m_orchestra.AddInstrument(m_sus2);
     
   }
 
   void AutonomousInit() override { 
+    m_orchestra.LoadMusic("sus.chrp");
     // Reset Timer for use with auton
     m_timer.Restart(); 
     // Sets the time for sus to false
@@ -58,7 +59,7 @@ class Robot : public frc::TimedRobot {
     }
   }
 
-  void TeleopInit() override { m_orchestra.Play(); }
+  void TeleopInit() {m_orchestra.LoadMusic("sus.chrp"); m_orchestra.Play(); }
 
   void TeleopPeriodic() override {
     // Drive with arcade style (use right stick to steer)
@@ -77,16 +78,20 @@ class Robot : public frc::TimedRobot {
 
   }
 
-  void TestInit() override {}
+  void TestInit() override { m_orchestra.LoadMusic("sus.chrp"); m_orchestra.Play(); }
 
   void TestPeriodic() override {}
 
   void DisabledInit() override {}
 
+  void RobotInit() {
+    
+  }
+
  private:
   // Robot drive system
-  ctre::phoenix6::hardware::TalonFX m_left{1};
-  ctre::phoenix6::hardware::TalonFX m_right{2};
+  ctre::phoenix6::hardware::TalonFX m_left {1};
+  ctre::phoenix6::hardware::TalonFX m_right {2};
   ctre::phoenix6::hardware::TalonFX m_sus1{3};
   ctre::phoenix6::hardware::TalonFX m_sus2{4};
   frc::DifferentialDrive m_robotDrive{m_left, m_right};
@@ -108,7 +113,9 @@ class Robot : public frc::TimedRobot {
   
   // Setup Orchestra
   ctre::phoenix6::Orchestra m_orchestra;
+  
   bool sus_time = false;
+  
 };
 
 #ifndef RUNNING_FRC_TESTS

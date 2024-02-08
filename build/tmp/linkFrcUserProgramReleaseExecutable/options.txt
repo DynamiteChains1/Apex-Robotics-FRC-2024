@@ -4,9 +4,6 @@
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\22d38269d4683112b534b044bc985d5e\\transformed\\wpilibNewCommands-cpp-2024.1.1-linuxathena\\linux\\athena\\shared\\libwpilibNewCommands.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\f77b324e35072bcf78bb45cb17f984fc\\transformed\\REVLib-cpp-2024.2.0-linuxathenastatic\\linux\\athena\\static\\libREVLib.a
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\75e20742880f97cec85a7b158eb98c49\\transformed\\REVLib-driver-2024.2.0-linuxathenastatic\\linux\\athena\\static\\libREVLibDriver.a
-C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\1be5b91d3e543c3c067d3c0929edab97\\transformed\\wpiapi-cpp-5.33.0-linuxathena\\linux\\athena\\shared\\libCTRE_Phoenix_WPI.so
-C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\2da51118a96d03fe775fe7de691e6e3d\\transformed\\api-cpp-5.33.0-linuxathena\\linux\\athena\\shared\\libCTRE_Phoenix.so
-C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\5d386fafed2ffff70f3af0516e8aa2a7\\transformed\\cci-5.33.0-linuxathena\\linux\\athena\\shared\\libCTRE_PhoenixCCI.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\8766c7b39def34b278651581c51da9c4\\transformed\\wpiapi-cpp-24.1.0-linuxathena\\linux\\athena\\shared\\libCTRE_Phoenix6_WPI.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\02b66a057070f6d6feb5c17f297c8bd1\\transformed\\tools-24.1.0-linuxathena\\linux\\athena\\shared\\libCTRE_PhoenixTools.so
 C:\\Users\\Asher\\.gradle\\caches\\transforms-3\\650eaf7b6b03029779b98ae122f6105b\\transformed\\wpilibc-cpp-2024.1.1-linuxathena\\linux\\athena\\shared\\libwpilibc.so
