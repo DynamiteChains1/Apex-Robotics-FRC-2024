@@ -7,6 +7,8 @@
 #include <frc/Joystick.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/Filesystem.h>
+#include <frc/controller/PIDController.h>
+#include <frc/controller/SimpleMotorFeedforward.h>
 #include <rev/CANSparkMax.h>
 #include <ctre/phoenix6/Orchestra.hpp>
 #include <ctre/phoenix6/TalonFX.hpp>
@@ -32,7 +34,11 @@ class Robot : public frc::TimedRobot {
     m_orchestra.LoadMusic("sus.chrp");
     m_orchestra.AddInstrument(m_sus1);
     m_orchestra.AddInstrument(m_sus2);
-    
+    sPID.SetP(kShootP);
+    sPID.SetI(kShootI);
+    sPID.SetD(kShootD);
+    sPID.SetFF(kShootFF);
+    sPID.SetOutputRange(-1.0, 1.0);
   }
 
   void AutonomousInit() override { 
@@ -66,12 +72,12 @@ class Robot : public frc::TimedRobot {
     m_robotDrive.ArcadeDrive(-m_stick.GetY(), m_stick.GetTwist());
     // Code for shooter
     if (m_stick.GetRawButton(1)) {
-      s_lead.Set(0.5);
+      setpoint = 300;
     }
     else{
-      s_lead.StopMotor();
+      setpoint = 0;
     }
-    
+    sPID.SetReference(setpoint, rev::CANSparkMax::ControlType::kVelocity);
     // Code for intake
 
     // Code for climber
@@ -115,7 +121,13 @@ class Robot : public frc::TimedRobot {
   ctre::phoenix6::Orchestra m_orchestra;
   
   bool sus_time = false;
-  
+  // PID setup for shooter
+  double setpoint = 1;
+  double kShootFF = 0.1;
+  double kShootP = 0.0075;
+  double kShootI = 0.0;
+  double kShootD = 0.0;
+  rev::SparkPIDController sPID = s_lead.GetPIDController();
 };
 
 #ifndef RUNNING_FRC_TESTS
