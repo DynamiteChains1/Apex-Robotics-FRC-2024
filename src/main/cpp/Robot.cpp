@@ -65,19 +65,25 @@ class Robot : public frc::TimedRobot {
     }
   }
 
-  void TeleopInit() {m_orchestra.LoadMusic("sus.chrp"); m_orchestra.Play(); }
+  void TeleopInit() {m_orchestra.LoadMusic("sus.chrp");}
 
   void TeleopPeriodic() override {
     // Drive with arcade style (use right stick to steer)
     m_robotDrive.ArcadeDrive(-m_stick.GetY(), m_stick.GetTwist());
     // Code for shooter
     if (m_stick.GetRawButton(1)) {
-      setpoint = 300;
+      s_setpoint = 300;
     }
     else{
-      setpoint = 0;
+      s_setpoint = 0;
     }
     sPID.SetReference(setpoint, rev::CANSparkMax::ControlType::kVelocity);
+    if (m_stick.GetRawButton(6)) {
+      m_orchestra.Play();
+    }
+    if (m_stick.GetRawButton(5)) {
+      m_orchestra.Pause();
+    }
     // Code for intake
 
     // Code for climber
@@ -102,11 +108,11 @@ class Robot : public frc::TimedRobot {
   ctre::phoenix6::hardware::TalonFX m_sus2{4};
   frc::DifferentialDrive m_robotDrive{m_left, m_right};
   // Setup motors for intake
-  rev::CANSparkMax i_left{0, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax i_right{1, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax i_turn{5, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax i_take{6, rev::CANSparkMax::MotorType::kBrushless};
   // Setup motors for shooter
   rev::CANSparkMax s_lead{7, rev::CANSparkMax::MotorType::kBrushless};
-  rev::CANSparkMax s_follow{8, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax s_follow{8, rev::CANSparkMax::MotorType::kBrushless}; 
   // Setup motors for climber
   
   // Setup Joystick and Timer
@@ -122,12 +128,19 @@ class Robot : public frc::TimedRobot {
   
   bool sus_time = false;
   // PID setup for shooter
-  double setpoint = 1;
-  double kShootFF = 0.1;
-  double kShootP = 0.0075;
-  double kShootI = 0.0;
+  double s_setpoint = 0;
+  double kShootFF = 0.000015;
+  double kShootP = 0.00006;
+  double kShootI = 0.000001;
   double kShootD = 0.0;
   rev::SparkPIDController sPID = s_lead.GetPIDController();
+  // PID setup for intake rotation
+  double i_setpos = 0;
+  double kI_turnFF = 0;
+  double kI_turnP = 0;
+  double kI_turnI = 0;
+  double kI_turnD = 0;
+  rev::SparkPIDController i_turnPID = i_turn.GetPIDController();
 };
 
 #ifndef RUNNING_FRC_TESTS
