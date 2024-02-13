@@ -29,6 +29,7 @@ class Robot : public frc::TimedRobot {
     m_timer.Start();
     s_follow.SetInverted(true);
     s_follow.Follow(s_lead);
+    c_follow.Follow(c_lead);
     //Old code that overcomplicates something that already happens
     /*const char *dp = deploy_path.c_str(); */
     m_orchestra.LoadMusic("sus.chrp");
@@ -77,12 +78,19 @@ class Robot : public frc::TimedRobot {
     else{
       s_setpoint = 0;
     }
-    sPID.SetReference(setpoint, rev::CANSparkMax::ControlType::kVelocity);
+    sPID.SetReference(s_setpoint, rev::CANSparkMax::ControlType::kVelocity);
     if (m_stick.GetRawButton(6)) {
       m_orchestra.Play();
     }
     if (m_stick.GetRawButton(5)) {
       m_orchestra.Pause();
+    }
+    c_speed = ClimberSpeed();
+    if (m_stick.GetRawButton(4)) {
+      c_lead.Set(c_speed);
+    }
+    else if (m_stick.GetRawButton(3)) {
+      c_lead.Set(-1 * c_speed);
     }
     // Code for intake
 
@@ -114,7 +122,8 @@ class Robot : public frc::TimedRobot {
   rev::CANSparkMax s_lead{7, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax s_follow{8, rev::CANSparkMax::MotorType::kBrushless}; 
   // Setup motors for climber
-  
+  rev::CANSparkMax c_lead{10, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax c_follow{9, rev::CANSparkMax::MotorType::kBrushless};
   // Setup Joystick and Timer
   frc::Joystick m_stick{0};
   frc::Timer m_timer;
@@ -141,6 +150,21 @@ class Robot : public frc::TimedRobot {
   double kI_turnI = 0;
   double kI_turnD = 0;
   rev::SparkPIDController i_turnPID = i_turn.GetPIDController();
+  // Variable setup for climber
+  double c_speed = 1;
+  double ClimberSpeed() {
+    if (m_stick.GetRawButtonPressed(10)){
+      if (c_speed < 1) {
+        c_speed = c_speed + 0.1;
+      }
+    }
+    else if (m_stick.GetRawButtonPressed(12)) {
+      if (c_speed > 0) {
+        c_speed = c_speed - 0.1;
+      }
+    }
+    return c_speed;
+  }
 };
 
 #ifndef RUNNING_FRC_TESTS
