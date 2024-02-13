@@ -85,12 +85,15 @@ class Robot : public frc::TimedRobot {
     if (m_stick.GetRawButton(5)) {
       m_orchestra.Pause();
     }
-    c_speed = ClimberSpeed();
+    ClimberSpeed();
     if (m_stick.GetRawButton(4)) {
       c_lead.Set(c_speed);
     }
     else if (m_stick.GetRawButton(3)) {
       c_lead.Set(-1 * c_speed);
+    }
+    else {
+      c_lead.Set(0);
     }
     // Code for intake
 
@@ -152,7 +155,7 @@ class Robot : public frc::TimedRobot {
   rev::SparkPIDController i_turnPID = i_turn.GetPIDController();
   // Variable setup for climber
   double c_speed = 1;
-  double ClimberSpeed() {
+  void ClimberSpeed() {
     if (m_stick.GetRawButtonPressed(10)){
       if (c_speed < 1) {
         c_speed = c_speed + 0.1;
@@ -163,7 +166,6 @@ class Robot : public frc::TimedRobot {
         c_speed = c_speed - 0.1;
       }
     }
-    return c_speed;
   }
 };
 
