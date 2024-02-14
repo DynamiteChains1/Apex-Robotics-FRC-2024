@@ -28,6 +28,7 @@ class Robot : public frc::TimedRobot {
     m_robotDrive.SetExpiration(100_ms);
     m_timer.Start();
     s_follow.SetInverted(true);
+    c_follow.SetInverted(true);
     s_follow.Follow(s_lead);
     c_follow.Follow(c_lead);
     //Old code that overcomplicates something that already happens
@@ -88,12 +89,15 @@ class Robot : public frc::TimedRobot {
     ClimberSpeed();
     if (m_stick.GetRawButton(4)) {
       c_lead.Set(c_speed);
+      c_follow.Set(c_speed);
     }
     else if (m_stick.GetRawButton(3)) {
       c_lead.Set(-1 * c_speed);
+      c_follow.Set(-1 * c_speed);
     }
     else {
       c_lead.Set(0);
+      c_follow.Set(0);
     }
     // Code for intake
 
@@ -162,7 +166,7 @@ class Robot : public frc::TimedRobot {
       }
     }
     else if (m_stick.GetRawButtonPressed(12)) {
-      if (c_speed > 0) {
+      if (0 < c_speed) {
         c_speed = c_speed - 0.1;
       }
     }
