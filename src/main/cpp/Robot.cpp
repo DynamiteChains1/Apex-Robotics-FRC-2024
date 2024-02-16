@@ -164,6 +164,11 @@ class Robot : public frc::TimedRobot {
       if (c_speed < 1) {
         c_speed = c_speed + 0.1;
       }
+   if (m_stick.GetRawButtonPressed(9)){
+      if (c_speed < 1){
+        c_speed = c_speed + 0.1;
+      }
+     }
     }
     else if (m_stick.GetRawButtonPressed(12)) {
       if (0 < c_speed) {
