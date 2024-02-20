@@ -76,17 +76,20 @@ class Robot : public frc::TimedRobot {
     if (m_stick.GetRawButton(1)) {
       s_setpoint = 300;
     }
-    else{
+    else {
       s_setpoint = 0;
     }
     sPID.SetReference(s_setpoint, rev::CANSparkMax::ControlType::kVelocity);
+    //Code for playing among us music
     if (m_stick.GetRawButton(6)) {
       m_orchestra.Play();
     }
     if (m_stick.GetRawButton(5)) {
       m_orchestra.Pause();
     }
+    //This function tests for controller input to increase/decrease the speed of the climber
     ClimberSpeed();
+    //This tests for controller input to climb up/down
     if (m_stick.GetRawButton(4)) {
       c_lead.Set(c_speed);
       c_follow.Set(c_speed);
@@ -100,7 +103,7 @@ class Robot : public frc::TimedRobot {
       c_follow.Set(0);
     }
     // Code for intake
-
+    
 
   }
 
@@ -164,7 +167,6 @@ class Robot : public frc::TimedRobot {
         c_speed = c_speed + 0.1;
       }
     }   
-    }
     else if (m_stick.GetRawButtonPressed(12)) {
       if (0 < c_speed) {
         c_speed = c_speed - 0.1;
@@ -172,6 +174,7 @@ class Robot : public frc::TimedRobot {
     }
   }
 };
+
 
 #ifndef RUNNING_FRC_TESTS
 int main() {
