@@ -54,6 +54,13 @@ class Robot : public frc::TimedRobot {
     sPID.SetFF(kShootFF);
     //This is to make sure its not trying to output more than possible
     sPID.SetOutputRange(-1.0, 1.0);
+
+    //Intake rotation PID setup using intak PID variables
+    i_turnPID.SetP(kI_turnP);
+    i_turnPID.SetI(kI_turnI);
+    i_turnPID.SetD(kI_turnD);
+    i_turnPID.SetFF(kI_turnFF);
+    i_turnPID.SetOutputRange(-1.0, 1.0);
   }
 
   void AutonomousInit() override { 
@@ -87,13 +94,9 @@ class Robot : public frc::TimedRobot {
     m_robotDrive.ArcadeDrive(-m_stick.GetY(), m_stick.GetTwist());
 
     // Code for shooter
-    if (m_stick.GetRawButton(1)) {
-      s_setpoint = 300;
-    }
-    else {
-      s_setpoint = 0;
-    }
-    sPID.SetReference(s_setpoint, rev::CANSparkMax::ControlType::kVelocity);
+    
+    //This tests if shooter should shoot
+    Shooter();
 
     //Code for playing/pausing among us music
     if (m_stick.GetRawButton(6)) {
@@ -103,23 +106,18 @@ class Robot : public frc::TimedRobot {
       m_orchestra.Pause();
     }
 
+    //Code for climber
+
     //This function tests for controller input to increase/decrease the speed of the climber
     ClimberSpeed();
 
     //This tests for controller input to climb up/down
-    if (m_stick.GetRawButton(4)) {
-      c_lead.Set(c_speed);
-      c_follow.Set(c_speed);
-    }
-    else if (m_stick.GetRawButton(3)) {
-      c_lead.Set(-1 * c_speed);
-      c_follow.Set(-1 * c_speed);
-    }
-    else {
-      c_lead.Set(0);
-      c_follow.Set(0);
-    }
+    ClimberUpDown();
+
     // Code for intake
+
+    //This function tests to rotate intake in/out
+    RotateIntake();
     
 
   }
@@ -153,6 +151,8 @@ class Robot : public frc::TimedRobot {
   // Setup Joystick and Timer
   frc::Joystick m_stick{0};
   frc::Timer m_timer;
+  frc::Timer intakeTurnTimer;
+  frc::Timer intakeTakeTimer;
   
   // Setup Orchestra
   ctre::phoenix6::Orchestra m_orchestra;
@@ -167,30 +167,80 @@ class Robot : public frc::TimedRobot {
   double kShootD = 0.0;
   rev::SparkPIDController sPID = s_lead.GetPIDController();
 
+  //Shooter function
+  void Shooter() {
+    if (m_stick.GetRawButton(4)) {
+      c_lead.Set(c_speed);
+      c_follow.Set(c_speed);
+    }
+    else if (m_stick.GetRawButton(3)) {
+      c_lead.Set(-1 * c_speed);
+      c_follow.Set(-1 * c_speed);
+    }
+    else {
+      c_lead.Set(0);
+      c_follow.Set(0);
+    }
+  }
+
   // PID setup for intake rotation
-  double i_setpos = 0;
+  double i_rotations = 1;
   double kI_turnFF = 0;
-  double kI_turnP = 0;
-  double kI_turnI = 0;
-  double kI_turnD = 0;
+  double kI_turnP = 0.1;
+  double kI_turnI = 0.0001;
+  double kI_turnD = 1;
   rev::SparkPIDController i_turnPID = i_turn.GetPIDController();
+
+  //Intake Rotation control setup
+  void RotateIntake() {
+    //This tests to make sure the time between
+    //last input is more than 3 seconds to prevent conflict
+    if (intakeTurnTimer.Get() > 3_s) {
+      //Testing if it should rotate out
+      if (m_stick.GetRawButtonPressed(7)) {
+        i_turnPID.SetReference(-i_rotations, rev::ControlType::kPosition);
+        intakeTurnTimer.Restart();
+      }
+      //Testing if it should rotate in
+      else if (m_stick.GetRawButtonPressed(8)) {
+        i_turnPID.SetReference(i_rotations, rev::ControlType::kPosition);
+        intakeTurnTimer.Restart();
+      }
+    }
+  }
 
   // Variable setup for climber
   double c_speed = 1;
 
   //Climber speed change function
   void ClimberSpeed() {
-    if (m_stick.GetRawButtonPressed(10)){
+    if (m_stick.GetRawButtonPressed(12)){
       if (c_speed < 1) {
         c_speed = c_speed + 0.1;
       }
     }   
-    else if (m_stick.GetRawButtonPressed(12)) {
+    else if (m_stick.GetRawButtonPressed(11)) {
       if (0 < c_speed) {
         c_speed = c_speed - 0.1;
       }
     }
   }
+  //Climber up/down function
+  void ClimberUpDown() {
+    if (m_stick.GetRawButton(4)) {
+      c_lead.Set(c_speed);
+      c_follow.Set(c_speed);
+    }
+    else if (m_stick.GetRawButton(3)) {
+      c_lead.Set(-1 * c_speed);
+      c_follow.Set(-1 * c_speed);
+    }
+    else {
+      c_lead.Set(0);
+      c_follow.Set(0);
+    }
+  }
+
   //April Tag stuff + camera
   static void VisionThread() {
     //Get usb input from cameraserver
