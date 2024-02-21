@@ -130,10 +130,6 @@ class Robot : public frc::TimedRobot {
 
   void DisabledInit() override {}
 
-  void RobotInit() {
-    
-  }
-
  private:
   // Robot drive system
   ctre::phoenix6::hardware::TalonFX m_left {1};
@@ -226,6 +222,12 @@ class Robot : public frc::TimedRobot {
       //Give camera stream new image to display
       camOutStream.PutFrame(mat);
     }
+  }
+
+  void RobotInit() override {
+    //Running Vision Program in seperate thread
+    std::thread visionThread(VisionThread);
+    visionThread.detach();
   }
 
 };
