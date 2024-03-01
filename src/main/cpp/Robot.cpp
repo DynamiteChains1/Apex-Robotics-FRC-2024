@@ -8,6 +8,11 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <cameraserver/CameraServer.h>
 #include <opencv2/opencv.hpp>
+#include "LimelightHelpers.h"
+#include <networktables/NetworkTable.h>
+#include <networktables/NetworkTableEntry.h>
+#include <networktables/NetworkTableInstance.h>
+#include <networktables/NetworkTableListener.h>
 
 //Main includes neccessary for robot functionality
 #include <frc/TimedRobot.h>
@@ -209,6 +214,27 @@ class Robot : public frc::TimedRobot {
     }
   }
 
+  //PID setup for intake intake
+  double i_setpos;
+  double kI_takeFF = 0.000015;
+  double kI_takeP = 0.00006;
+  double kI_takeI = 0.000001;
+  double kI_takeD = 0.0;
+  rev::SparkPIDController i_takePID = i_take.GetPIDController();
+
+  //Function for intake to intake game piece
+  void DoIntake() {
+    if (intakeTakeTimer.Get() > 3_s){
+      if (m_stick.GetRawButtonPressed(9)) {
+        intakeTakeTimer.Reset();
+      }
+      if (m_stick.GetRawButtonPressed(10)) {
+        intakeTakeTimer.Reset();
+      }
+    }
+  }
+
+
   // Variable setup for climber
   double c_speed = 1;
 
@@ -243,35 +269,7 @@ class Robot : public frc::TimedRobot {
 
   //April Tag stuff + camera
   static void VisionThread() {
-    //Get usb input from cameraserver
-    cs::UsbCamera camera = frc::CameraServer::StartAutomaticCapture();
-    camera.SetResolution(640, 480);
 
-    //Make a CV sink to hold Mats (images/frames but for OpenCV)
-    cs::CvSink cvSink = frc::CameraServer::GetVideo();
-
-    //Direct the output back to the dashboard with CVSource
-    cs::CvSource camOutStream = frc::CameraServer::PutVideo("CameraOutput", 640, 480);
-
-    //Never explained why, but we reuse this mat bc mats
-    //are memory extensive. Don't know how it is being reused
-    //or when it started existing in the first place
-    cv::Mat mat;
-
-    //Image to mat conversion loop
-    while (true) {
-
-      //Tells the CvSink to grab a frame and put it into the mat
-      //and notify of errors
-      if (cvSink.GrabFrame(mat) == 0) {
-        //Sends Camera Output Stream the error
-        camOutStream.NotifyError(cvSink.GetError());
-        //skip rest of loop because of error
-        continue;
-      }
-      //Give camera stream new image to display
-      camOutStream.PutFrame(mat);
-    }
   }
 
   void RobotInit() override {
