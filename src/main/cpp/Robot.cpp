@@ -174,18 +174,11 @@ class Robot : public frc::TimedRobot {
 
   //Shooter function
   void Shooter() {
-    if (m_stick.GetRawButton(4)) {
-      c_lead.Set(c_speed);
-      c_follow.Set(c_speed);
+    if (m_stick.GetRawButton(1)) {
+      s_setpoint = 300;
     }
-    else if (m_stick.GetRawButton(3)) {
-      c_lead.Set(-1 * c_speed);
-      c_follow.Set(-1 * c_speed);
-    }
-    else {
-      c_lead.Set(0);
-      c_follow.Set(0);
-    }
+   else:
+    s_setpoint = 0;
   }
 
   // PID setup for intake rotation
