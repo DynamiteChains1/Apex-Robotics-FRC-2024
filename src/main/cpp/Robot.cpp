@@ -12,7 +12,7 @@
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableEntry.h>
 #include <networktables/NetworkTableInstance.h>
-#include <networktables/NetworkTableListener.h>
+#include <networktables/NetworkTableValue.h>
 
 //Main includes neccessary for robot functionality
 #include <frc/TimedRobot.h>
@@ -269,7 +269,7 @@ class Robot : public frc::TimedRobot {
 
   //April Tag stuff + camera
   static void VisionThread() {
-
+    std::shared_ptr<nt::NetworkTable> nettable = nt::NetworkTableInstance::GetDefault().GetTable("Limelight");
   }
 
   void RobotInit() override {
