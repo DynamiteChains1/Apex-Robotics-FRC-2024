@@ -269,7 +269,11 @@ class Robot : public frc::TimedRobot {
 
   //April Tag stuff + camera
   static void VisionThread() {
-    std::shared_ptr<nt::NetworkTable> nettable = nt::NetworkTableInstance::GetDefault().GetTable("Limelight");
+    std::shared_ptr<nt::NetworkTable> nettable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+    ;
+    void DistanceToTarget(){
+      double targetVertOffset = nettable->GetNumber("ty", 0.0);
+    }
   }
 
   void RobotInit() override {
